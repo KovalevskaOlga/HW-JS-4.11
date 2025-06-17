@@ -667,6 +667,54 @@ function hmrAccept(bundle /*: ParcelRequire */ , id /*: string */ ) {
 }
 
 },{}],"a0t4e":[function(require,module,exports,__globalThis) {
+// task 1
+const getMessage = document.querySelector(".timer");
+const getBtn = document.querySelector(".btn");
+let time = 60;
+let timer;
+function startTimer() {
+    time = 60;
+    getMessage.innerHTML = `\u{437}\u{430}\u{43B}\u{438}\u{448}\u{438}\u{43B}\u{43E}\u{441}\u{44C}: ${time}\u{445}\u{432}`;
+    timer = setInterval(()=>{
+        time -= 1;
+        getMessage.innerHTML = `\u{437}\u{430}\u{43B}\u{438}\u{448}\u{438}\u{43B}\u{43E}\u{441}\u{44C}: ${time}\u{445}\u{432}`;
+        if (time === 30) alert("\u0437\u0430\u043B\u0438\u0448\u0438\u043B\u043E\u0441\u044C 30\u0445\u0432");
+        else if (time === 0) {
+            clearInterval(timer);
+            getMessage.innerHTML = "\u0447\u0430\u0441 \u0432\u0438\u0439\u0448\u043E\u0432";
+        }
+    }, 60000);
+}
+console.log(time);
+getBtn.addEventListener("click", startTimer);
+// task 2
+const getMess = document.querySelector(".message");
+const getBtnStart = document.querySelector(".btn-start");
+let sec = 30;
+let timer2;
+function startTimer2() {
+    sec = 30;
+    getBtnStart.disabled = true;
+    clearInterval(timer2);
+    getMess.style.color = "black";
+    timer2 = setInterval(()=>{
+        sec -= 1;
+        getMess.innerHTML = `\u{43F}\u{440}\u{43E}\u{439}\u{448}\u{43B}\u{43E}: ${sec}sec`;
+        if (sec === 10) getMess.style.color = "red";
+        else if (sec === 0) {
+            clearInterval(timer2);
+            getBtnStart.disabled = false;
+            explosionVideo.style.display = "block";
+            explosionVideo.play();
+            // Запускаем звук только через 3 секунды
+            setTimeout(()=>{
+                explosionSound.currentTime = 0;
+                explosionSound.play();
+            }, 5000);
+        }
+    }, 1000);
+}
+getBtnStart.addEventListener("click", startTimer2);
 
 },{}]},["5j6Kf","a0t4e"], "a0t4e", "parcelRequire002d", {})
 
